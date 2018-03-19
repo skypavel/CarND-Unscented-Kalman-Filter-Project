@@ -107,9 +107,7 @@ int main()
           
           //Call ProcessMeasurment(meas_package) for Kalman filter
             ukf.ProcessMeasurement(meas_package);
-            std::cout << "x_kal: " << ukf.x_(0) << " x_real = " <<x_gt<<" mes_x "<<meas_package.raw_measurements_(0)<<std::endl;
-            std::cout << "y_kal: " << ukf.x_(1) << " y_real = " <<y_gt<<" mes_y "<<meas_package.raw_measurements_(1)<<std::endl;
-    	  //Push the current estimated x,y positon from the Kalman filter's state vector
+          //Push the current estimated x,y positon from the Kalman filter's state vector
 
     	  VectorXd estimate(4);
 
@@ -139,8 +137,6 @@ int main()
           msgJson["rmse_vy"] = RMSE(3);
           auto msg = "42[\"estimate_marker\"," + msgJson.dump() + "]";
 
-           // std::cout << "Send: " << msgJson << std::endl;
-          // std::cout << msg << std::endl;
           ws.send(msg.data(), msg.length(), uWS::OpCode::TEXT);
 	  
         }
